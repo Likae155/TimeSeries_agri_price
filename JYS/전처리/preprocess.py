@@ -215,7 +215,7 @@ def select_essential_columns(df):
     # 2. 필수 컬럼 정의 및 정렬 순서
     # DATE (앞) + 핵심 지표 (중간) + 시계열 파생변수 (뒤)
     essential_cols = [
-        'DATE', '총거래금액', '총거래물량', '평균가격', '품종', '등급', '국산여부', '산지',
+        'DATE', '품목', '총거래금액', '총거래물량', '평균가격', '품종', '등급', '국산여부', '산지',
         'Year', 'Quarter', 'Month', 'Week', 'Day', 'DayOfWeek'
     ]
     
