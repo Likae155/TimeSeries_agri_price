@@ -58,15 +58,16 @@ def preprocess(df):
     # 4. 핵심 컬럼 정리 및 재정렬
     df = select_essential_columns(df)
     
-    # 5. 인적 오류(Human Error) 제거 (프로세스 가장 마지막 단계)
+    # 5. 인적 오류(Human Error) 제거 (개별 거래 단위 정제)
     df = remove_human_errors(df)
     
-    # 6. 인덱스 재정렬 및 최종 리포트 출력
+    # 6. 품목 및 날짜별 일별 집계 (최종 결과물 형태)
+    df = aggregate_daily_data(df)
+    
+    # 7. 인덱스 재정렬 및 최종 리포트 출력
     df = df.reset_index(drop=True)
     final_len = len(df)
-    removed_len = original_len - final_len
-    removed_ratio = (removed_len / original_len * 100) if original_len > 0 else 0
-    print(f"--- [전처리 완료] 초기 데이터: {original_len:,}행 -> 정제 후: {final_len:,}행 (총 {removed_ratio:.2f}% 제거됨) ---")
+    print(f"--- [전처리 완료] 초기 데이터: {original_len:,}행 -> 최종 일별 집계: {final_len:,}행 ---")
     
     return df
 
@@ -188,13 +189,17 @@ def _format_final_origin(df):
 # =============================================================================
 
 def _preprocess_date(df):
-    """날짜 변환 및 파생 변수 생성"""
-    # 2. 날짜 변환 (여러 형식이 섞여 있는 경우를 위한 format='mixed' 적용)
-    df['DATE'] = pd.to_datetime(df['DATE'], format='mixed')
+    """날짜 변환 및 파생 변수 생성 (시간 정보 제거 포함)"""
+    # 날짜 변환 및 시간 정보 제거 (normalize)
+    if not pd.api.types.is_datetime64_any_dtype(df['DATE']):
+        df['DATE'] = pd.to_datetime(df['DATE'], format='mixed').dt.normalize()
+    else:
+        df['DATE'] = df['DATE'].dt.normalize()
+
     df['Year'] = df['DATE'].dt.year
     df['Quarter'] = df['DATE'].dt.quarter
     df['Month'] = df['DATE'].dt.month
-    df['Week'] = df['DATE'].dt.isocalendar().week
+    df['Week'] = df['DATE'].dt.isocalendar().week.astype(int)
     df['Day'] = df['DATE'].dt.day
     df['DayOfWeek'] = df['DATE'].dt.day_name()
     
@@ -260,7 +265,42 @@ def remove_human_errors(df):
     mask = group_med.notnull() & (df['평균가격'] >= lower_limit) & (df['평균가격'] <= upper_limit)
     clean_df = df[mask].copy()
     
+    removed_count = len(df) - len(clean_df)
+    print(f"[인적 오류 제거] 중앙값 기준 범위를 벗어난 이상치 {removed_count:,}행 제거됨")
+    
     return clean_df
+
+
+# =============================================================================
+# [6단계: 최종 집계 및 포맷팅]
+# =============================================================================
+
+def aggregate_daily_data(df):
+    """
+    품목 및 날짜별로 그룹화하여 일별 집계 데이터를 생성합니다.
+    분석 및 모델링의 최종 단위인 '품목별 일일 평균가격'을 산출합니다.
+    """
+    # 1. 품목/날짜별 집계 (총거래금액, 총거래물량 합계)
+    df_daily = df.groupby(['품목', 'DATE']).agg({
+        '총거래금액': 'sum',
+        '총거래물량': 'sum'
+    }).reset_index()
+    
+    # 2. 일별 평균가격(단가) 재산출 (가중 평균 효과: 총액 / 총물량)
+    df_daily['평균가격'] = df_daily['총거래금액'] / df_daily['총거래물량']
+    
+    # 3. 날짜 파생변수 재생성 (집계 후 필요한 시간 정보 보완)
+    _preprocess_date(df_daily)
+    
+    # 4. 최종 컬럼 순서 및 구성 정의
+    final_cols = [
+        'DATE', '품목', '총거래금액', '총거래물량', '평균가격',
+        'Year', 'Quarter', 'Month', 'Week', 'Day', 'DayOfWeek'
+    ]
+    
+    # 데이터셋에 존재하는 컬럼만 선택하여 반환
+    existing_cols = [col for col in final_cols if col in df_daily.columns]
+    return df_daily[existing_cols].copy()
 
 
 if __name__ == "__main__":
