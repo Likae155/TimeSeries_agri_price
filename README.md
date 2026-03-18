@@ -1,7 +1,7 @@
 # EST 15기 시계열데이터 프로젝트 - 농산물 팀
 
 데이콘(https://dacon.io/competitions/official/235801/overview/description)
-![alt text](image/image.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image.png?raw=true)
 
 #### 팀원: 박창민, 안도겸, 정영석
 
@@ -10,23 +10,23 @@ GitHub: https://github.com/Likae155/TimeSeries_agri_price
 # 주제: 21년도 농산물 가격 예측
 
 ## 대회 설명
-![한국농수산식품유통공사](image/image-1.png)                  ![데이콘](image/image-3.png)          
+![한국농수산식품유통공사](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-1.png?raw=true)                  ![데이콘](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-3.png?raw=true)          
 **한국농수산식품유통공사**가 주최하고 **데이콘**이 주관한 대회
 
 2016년 부터 2021년 까지의 **전국 도매시장 거래정보 데이터**를 제공
 
-![배추](image/image-4.png)    ![무](image/image-6.png) 배추나 무와 같은 21가지 농작물의 21년도 가격을 예측하는 AI 경진대회
+![배추](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-4.png?raw=true)    ![무](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-6.png?raw=true) 배추나 무와 같은 21가지 농작물의 21년도 가격을 예측하는 AI 경진대회
 
 t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측해야 함
-![alt text](image/image-20.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-20.png?raw=true)
 
 <br>
 <br>
 
 ## 참여 성과
 26년도의 가격을 예측한 모델의 평가지표
-![alt text](image/image-19.png)
-![alt text](image/image-7.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-19.png?raw=true)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-7.png?raw=true)
 <br>
 <br>
 
@@ -36,23 +36,23 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 1. base line 데이터
 - 각 작물의 거래량과 가격을 일 단위로 집계한 데이터
 - 원본데이터를 가공하여 배포한 데이터셋
-![alt text](image/image-9.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-9.png?raw=true)
 
 2. 원본 데이터
 - 판매 일자, 시장, 법인, 품목, 품종, 단위, 포장, 산지 등등...
-![alt text](image/image-10.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-10.png?raw=true)
 
 3. API를 통해 추가되는 데이터
 - 현 시점에서 접근 불가
 
-![alt text](image/image-11.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-11.png?raw=true)
 
 ## 새로운 데이터
 1. 전국 도매시장 경락 정보
 - 전국 도매시장의 경매 낙찰 정보
 - 각각의 거래의 일자, 품목, 물량, 가격, 산지 등의 정보
 - 22년 1월 ~ 현재까지의 데이터
-![alt text](image/image-12.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-12.png?raw=true)
 
 <br>
 <br>
@@ -64,7 +64,7 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 - 총거래금액(원), 총거래물량(kg)
 - '음수'로 표현되는 데이터가 존재: 취소거래
     - 거래일과 취소일이 동일하지 않을 경우 통계상 왜곡 발생 가능.
-![alt text](image/image-15.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-15.png?raw=true)
 
 ### **농작물**
 - 총 **21가지**의 작물
@@ -83,7 +83,7 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 <br>
 <br>
 
-![alt text](image/배추_03_monthly_trend.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/배추_03_monthly_trend.png?raw=true)
  - 예상과 달리 김장철의 거래물량이 적다
  - 김장배추는 도매시장을 통해 거래하지 않고 대형 마트, 농협 등으로 직거래하는 유통 구조
  - 9월의 고랭지 배추는 도매시장으로 유통되기 때문에 거래 물량이 많이 잡힌다.
@@ -92,7 +92,7 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 
 ## 2. 추세
  - 단기적인 급락과 급등은 반복하지만, 장기적인 추세가 두드러지게 나타나지 않는다. <br>
-![alt text](image/image-14.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-14.png?raw=true)
 
 ## 3. 21가지 농작물의 차이
 ### 🥬 배추 vs 🍃 깻잎 vs 🍅 토마토 비교
@@ -126,7 +126,7 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 - 주단위 평균가격에 비해 지나치게 높거나 낮은 가격 제거(0.05배, 20배)
 - 가격의 급등락이 심한 농작물의 특성상 많은 이상치를 제거하지 못함
 
-![alt text](image/image-16.png) ![alt text](image/배추_08_품종_trend.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-16.png?raw=true) ![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/배추_08_품종_trend.png?raw=true)
 
 
 # 추가 전처리 및 파생변수 생성
@@ -136,11 +136,11 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 - 시장은 열려있지만 특정 작물의 거래가 없는 날
 - ffill을 사용하여 직전 유효 데이터로 보간
 - 날짜 관련 파생 변수 다시 생성
-![alt text](image/캠벨얼리_05_daily_trend.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/캠벨얼리_05_daily_trend.png?raw=true)
 
 ### 2. 숫자 컬럼의 로그 변환
 - 농작물 별 무게의 차이로 kg당 가격이 상이
-![alt text](image/image-17.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-17.png?raw=true)
 
 ### 3. 명절 연휴 명시
 - 명절 전후의 기간을 명시하여 모델이 명절 효과를 학습할 수 있도록 함
@@ -161,7 +161,7 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 - 작물 생리 특성에 따라 엽채류(7일), 과채류(14일), 구근/저장류(30일)로 그룹화하여 시차 및 누적 기상 플래그를 차등 반영
 
 
-![alt text](image/image-18.png)
+![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-18.png?raw=true)
 
 ### 6. 품목 정체성 임베딩 (PCA)
  - 품목 간의 상이한 데이터 분포를 모델이 인지할 수 있도록 평균 가격, 가격 변동성, 거래 빈도, 유가 상관계수, 기상 민감도를 통계량으로 추출
@@ -225,3 +225,4 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 - 농산물 데이터: 농넷 (https://www.nongnet.or.kr/front/M000000222/content/view.do)
 - 유가 데이터: 오피넷 (https://www.opinet.co.kr/glopopdSelect.do)
 - 기상 데이터: 기상청 (https://apihub.kma.go.kr/)
+
