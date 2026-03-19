@@ -23,10 +23,16 @@ t일에 t-1일까지의 데이터를 갖고 t+7, +14, +28의 데이터를 예측
 <br>
 <br>
 
+### 평가지표: NMAE(Normalized Mean Absolute Error, 정규화된 평균 절대 오차
+
+<br>
+<br>
+
 ## 참여 성과
 26년도의 가격을 예측한 모델의 평가지표
 ![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-19.png?raw=true)
 ![alt text](https://raw.githubusercontent.com/Likae155/TimeSeries_agri_price/main/image/image-7.png?raw=true)
+
 <br>
 <br>
 
